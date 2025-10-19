@@ -1,0 +1,96 @@
+﻿<div ng-controller="suggestController as vm" ng-init="vm.initializeController()">
+
+    <div class="container">
+
+        <div class="card" id="ai-queue" aria-labelledby="ai-queue-title">
+
+            <div class="row" style="margin-bottom:40px">
+                <div class="col-md-10">
+                    <h1 style="margin-top:20px;text-align:left!important;margin-bottom:0!important">
+                        <span style="font-size: 30px !important" class="sub-gradient">Job Application Tracker</span>
+                    </h1>
+                    <p class="lead">
+                        Track your AI-powered job applications across all platforms in real-time
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-bottom:20px" class="action-bar">
+                <div class="action-left">
+                    <div class="btn outline">Search</div>
+                </div>
+            </div>
+
+            <div class="kanban-wrap" style="margin-left:100px">
+                <div style="width:100%!important" class="row">
+
+                    <div ng-repeat="row in vm.suggests" style="margin:10px" class="column">
+                        <div class="job" role="article">
+                            <div class="details">
+                                <div>{{row.Title}}</div>
+                                <div>{{row.Company}}</div>
+                                <div>{{row.About}}</div>
+                                <div>{{row.Description}}</div>
+                                <div>{{row.CreateDate}}</div>
+                            </div>
+                            <div class="job-footer">
+                                <div class="badges">
+                                    <button data-dismiss="modal" data-bs-toggle="modal" data-bs-target="#addResponseModal"
+                                            ng-click="vm.getRow(row)" type="button"
+                                            class="btn btn-danger" id="confirmDelete">
+                                        Responses
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addResponseModal" tabindex="-1" aria-labelledby="addOrUpdateModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content modal-xl">
+
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <div class="row">
+                        <div ng-if="vm.Responses" ng-repeat="message in vm.Responses" style="cursor: pointer;">
+                            <div style="margin-bottom:10px;padding:15px" ng-class="{'chatTo':message.ResponseText}">
+                                <label style="height:50px;user-select:none!important;text-align:right!important">
+                                    {{message.ResponseText}}
+                                </label>
+
+                                <label style="float:left;background-color:transparent;">{{message.CreateDate}}</label>
+                            </div>
+
+                            <div ng-if="message.AiResult" style="margin-bottom: 10px;padding: 15px" ng-class="{'chatFrom':message.AiResult}">
+                                <label style="height:50px;user-select:none!important;text-align:left!important">
+                                    {{message.AiResult}}
+                                </label>
+
+                                <label style="float:left;background-color:transparent;">{{message.CreateDate}}</label>
+                            </div>
+                        </div>
+                        <hr ng-if="vm.Responses" style="margin-top:40px!important" />
+                        <div class="field col-md-12">
+                            <label style="float:left!important">ResponseText</label>
+                            <textarea class="my_textarea" ng-model="vm.item.ResponseText"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn ghost" data-bs-dismiss="modal">Close</button>
+                    <button ng-click="vm.addResponse()" type="button" class="btn btn-danger" id="confirmDelete">Save</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

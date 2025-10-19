@@ -1,0 +1,7 @@
+C:\CoreCleanProjects\Training\ParsianWebUI\obj\Release\net7.0\PubTmp\Out\ParsianWebUI.exe
+C:\CoreCleanProjects\Training\ParsianWebUI\obj\Release\net7.0\PubTmp\Out\appsettings.Development.json
+C:\CoreCleanProjects\Training\ParsianWebUI\obj\Release\net7.0\PubTmp\Out\appsettings.json
+C:\CoreCleanProjects\Training\ParsianWebUI\obj\Release\net7.0\PubTmp\Out\ParsianWebUI.dll
+C:\CoreCleanProjects\Training\ParsianWebUI\obj\Release\net7.0\PubTmp\Out\ParsianWebUI.deps.json
+C:\CoreCleanProjects\Training\ParsianWebUI\obj\Release\net7.0\PubTmp\Out\ParsianWebUI.runtimeconfig.json
+C:\CoreCleanProjects\Training\ParsianWebUI\obj\Release\net7.0\PubTmp\Out\ParsianWebUI.pdb

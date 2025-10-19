@@ -1,0 +1,271 @@
+﻿<div ng-controller="dashboardController as vm" ng-init="vm.initializeController()">
+
+    <div class="wrap">
+
+        <div class="card" id="ai-queue" aria-labelledby="ai-queue-title">
+
+            <div class="row" style="margin-bottom:40px">
+                <div class="col-md-10">
+                    <h1 style="margin-top:20px;text-align:left!important;margin-bottom:0!important">
+                        <span style="font-size: 30px !important" class="sub-gradient">Smart Document Upload ⚡</span>
+                    </h1>
+                    <p class="lead">
+                        Upload, analyze, match, and apply automatically with AI
+                    </p>
+                </div>
+            </div>
+
+            <div class="steps" aria-hidden="false">
+                <div class="step active">
+                    <div class="circle">⬆️</div>
+                    <div class="label">Upload</div>
+                </div>
+                <div class="connector"></div>
+
+                <div class="step inactive">
+                    <div class="circle">✨</div>
+                    <div class="label">AI Analysis</div>
+                </div>
+                <div class="connector"></div>
+
+                <div class="step inactive">
+                    <div class="circle">🎯</div>
+                    <div class="label">Job Matching</div>
+                </div>
+                <div class="connector"></div>
+
+                <div class="step inactive">
+                    <div class="circle">✉️</div>
+                    <div class="label">Cover Letters</div>
+                </div>
+                <div class="connector"></div>
+
+                <div class="step inactive">
+                    <div class="circle">📤</div>
+                    <div class="label">Ready to Send</div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="card">
+            <div style="display:flex;align-items:center;margin-bottom:12px">
+                <div>
+                    <div style="font-weight:900;font-size:16px">Document Upload</div>
+                    <div style="color:var(--muted);font-weight:700;font-size:13px">Upload your resume, cover letter, and certificates</div>
+                </div>
+            </div>
+
+            <div class="upload-area" aria-hidden="true">
+                <div class="upload-ico">⬆️</div>
+                <p class="title">Drop files here or click to browse</p>
+                <p class="desc">Supports PDF, DOC, DOCX files up to 10MB</p>
+                <div style="height:12px"></div>
+                <span class="btn fake-file-input">Choose Files</span>
+            </div>
+
+        </div>
+
+        <!-- Main grid -->
+        <!--<div class="grid">-->
+        <!-- Upload card -->
+        <!--<div class="card">
+
+
+            <div class="upload-area" aria-hidden="true">-->
+        <!-- example uploaded files (static preview) -->
+        <!--<div class="uploaded-list" aria-hidden="false">
+            <div class="file-item">
+                <div class="file-meta">
+                    <div class="file-icon">📄</div>
+                    <div>
+                        <div class="file-name">john_doe_resume.pdf</div>
+                        <div class="file-sub">1.24 MB • resume</div>
+                    </div>
+                </div>
+                <div><span class="badge processed">Processed</span></div>
+            </div>
+
+            <div class="file-item">
+                <div class="file-meta">
+                    <div class="file-icon">✉️</div>
+                    <div>
+                        <div class="file-name">cover_letter.docx</div>
+                        <div class="file-sub">0.24 MB • cover-letter</div>
+                    </div>
+                </div>
+                <div><span class="badge uploaded">Uploaded</span></div>
+            </div>
+
+            <div class="file-item">
+                <div class="file-meta">
+                    <div class="file-icon">📜</div>
+                    <div>
+                        <div class="file-name">certificates.zip</div>
+                        <div class="file-sub">2.10 MB • certificate</div>
+                    </div>
+                </div>
+                <div><span class="badge analyzing">Analyzing</span></div>
+            </div>
+        </div>-->
+        <!-- static analysis progress -->
+        <!--<div class="progress-row">
+            <div class="progress-label"><span>AI Analysis Progress</span><span>72%</span></div>
+            <div class="progress-bar" aria-hidden="true"><div class="progress-fill" style="width:72%"></div></div>
+            <div style="height:8px"></div>
+            <div class="progress-label"><span>Job Matching</span><span>43%</span></div>
+            <div class="progress-bar" aria-hidden="true"><div class="progress-fill" style="width:43%"></div></div>
+            <div style="height:8px"></div>
+            <div class="progress-label"><span>Cover Letter Generation</span><span>0%</span></div>
+            <div class="progress-bar" aria-hidden="true"><div class="progress-fill" style="width:0%"></div></div>
+        </div>-->
+        <!-- extracted skills -->
+        <!--<div style="margin-top:14px">
+            <div style="font-weight:900;margin-bottom:8px">Extracted Skills</div>
+            <div class="skills">
+                <div class="skill">React</div>
+                <div class="skill">TypeScript</div>
+                <div class="skill">Node.js</div>
+                <div class="skill">Python</div>
+                <div class="skill">AWS</div>
+                <div class="skill">Docker</div>
+            </div>
+        </div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!-- Job Matches -->
+        <!--<div style="margin-top:14px" class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <div>
+                <div style="font-weight:900;font-size:16px">Job Matches</div>
+                <div style="color:var(--muted);font-weight:700;font-size:13px">AI-found jobs with personalized cover letters</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+                <span style="font-weight:900;color:#065f46;background:#ecfdf5;padding:6px 10px;border-radius:999px">AI Active</span>
+                <a class="btn.outline" href="#viewall">View All</a>
+            </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">-->
+        <!-- Job 1 -->
+        <!--<div class="job-item">
+                                    <div class="job-left">
+                                        <div class="platform-icon">💼</div>
+                                        <div class="job-meta">
+                                            <div class="job-title">Senior React Developer</div>
+                                            <div class="job-sub">TechCorp • Munich</div>
+                                            <div class="job-extra">€70,000 - €85,000 • LinkedIn • Posted 2 days ago</div>
+                                            <div style="margin-top:8px;display:flex;gap:8px">
+                                                <span class="badge match" style="background:#ecfdf5;color:#065f46;border-color:#bbf7d0">95% match</span>
+                                                <span class="badge status" style="background:linear-gradient(90deg,#fff7ed,#fff4e6);color:var(--orange-600)">Found</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="job-actions">
+                                        <details>
+                                            <summary><a class="btn-sm outline" href="#">View</a></summary>
+                                            <pre>
+        Dear Hiring Manager,
+
+        I am writing to express my strong interest in the Senior React Developer position at TechCorp. With my extensive experience in React, TypeScript, and modern web development, I believe I would be an excellent fit for your team.
+
+        Best regards,
+        Demo User
+                          </pre>
+                                        </details>
+                                        <a class="btn-sm primary" href="#">Send</a>
+                                    </div>
+                                </div>-->
+        <!-- Job 2 -->
+        <!--<div class="job-item">
+                                    <div class="job-left">
+                                        <div class="platform-icon">🪜</div>
+                                        <div class="job-meta">
+                                            <div class="job-title">Full Stack Engineer</div>
+                                            <div class="job-sub">StartupXYZ • Berlin</div>
+                                            <div class="job-extra">€60,000 - €75,000 • StepStone • Posted 4 days ago</div>
+                                            <div style="margin-top:8px;display:flex;gap:8px">
+                                                <span class="badge match" style="background:#ecfdf5;color:#065f46;border-color:#bbf7d0">92% match</span>
+                                                <span class="badge status" style="background:linear-gradient(90deg,#fff7ed,#fff4e6);color:var(--orange-600)">Found</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="job-actions">
+                                        <details>
+                                            <summary><a class="btn-sm outline" href="#">View</a></summary>
+                                            <pre>
+        Dear Hiring Manager,
+
+        I am writing to express my strong interest in the Full Stack Engineer position at StartupXYZ. With my experience in React and backend systems, I believe I can contribute meaningfully.
+
+        Best regards,
+        Demo User
+                          </pre>
+                                        </details>
+                                        <a class="btn-sm outline" href="#">Generate</a>
+                                    </div>
+                                </div>-->
+        <!-- Job 3 -->
+        <!--<div class="job-item">
+                                    <div class="job-left">
+                                        <div class="platform-icon">🔍</div>
+                                        <div class="job-meta">
+                                            <div class="job-title">Frontend Developer</div>
+                                            <div class="job-sub">WebSolutions • Frankfurt</div>
+                                            <div class="job-extra">€65,000 - €80,000 • Indeed • Posted 6 days ago</div>
+                                            <div style="margin-top:8px;display:flex;gap:8px">
+                                                <span class="badge match" style="background:#ecfdf5;color:#065f46;border-color:#bbf7d0">88% match</span>
+                                                <span class="badge status" style="background:linear-gradient(90deg,#fff7ed,#fff4e6);color:var(--orange-600)">Found</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="job-actions">
+                                        <details>
+                                            <summary><a class="btn-sm outline" href="#">View</a></summary>
+                                            <pre>
+        Dear Hiring Manager,
+
+        I am excited to apply for the Frontend Developer role at WebSolutions. My experience with React and front-end best practices fits well with your needs.
+
+        Best regards,
+        Demo User
+                          </pre>
+                                        </details>
+                                        <a class="btn-sm outline" href="#">Save</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+        <!--</div>-->
+        <!-- Right column -->
+        <!--<div class="right-col">
+            <div class="small-card">
+                <h4>Analysis Summary</h4>
+                <div class="small-note">Uploaded files: 3</div>
+                <div style="height:8px"></div>
+                <div class="small-note" style="font-weight:900;color:var(--muted)">Top skills:</div>
+                <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+                    <span class="skill">React</span>
+                    <span class="skill">TypeScript</span>
+                    <span class="skill">AWS</span>
+                </div>
+            </div>
+
+            <div class="small-card">
+                <h4>Quick Actions</h4>
+                <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+                    <a class="btn-sm primary" href="#upload">Analyze Now</a>
+                    <a class="btn-sm outline" href="#export">Export Data</a>
+                    <a class="btn-sm outline" href="#settings">Settings</a>
+                </div>
+            </div>
+
+            <div class="small-card">
+                <h4>Tips</h4>
+                <div class="small-note">Make sure your resume is up-to-date and contains clear keywords for best matching results.</div>
+            </div>
+        </div>-->
+
+    </div>
+</div>

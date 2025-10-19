@@ -1,0 +1,475 @@
+﻿<div ng-controller="dashboardController as vm" ng-init="vm.initializeController()">
+
+    <div class="content-body">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card l-bg-blue-dark">
+                                <div class="card-statistic-3 p-4">
+                                    <!--<div style="right:1160px;top:50px" class="card-icon card-icon-large"><i class="icofont-dollar"></i></div>
+                                    <div style="right:1100px" class="card-icon card-icon-large"><i class="icofont-dollar"></i></div>
+                                    <div style="right:1050px;top:70px" class="card-icon card-icon-large"><i class="icofont-dollar"></i></div>-->
+                                    <div class="mb-4">
+                                        <h5 class="text-warning card-title mb-0">قیمت طلا</h5>
+                                    </div>
+                                    <div class="row align-items-center mb-2 d-flex">
+                                        <div class="col-8">
+                                            <h2 id="lblGoldValue" style="color: whitesmoke;display:none!important" class="d-flex align-items-center mb-0">
+                                                {{vm.goldValue | NumberToMoney}} تومان
+                                            </h2>
+                                            <div id="counter">10 ثانیه تا بروزرسانی قیمت ...</div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex" style="margin-top:20px">
+                                        <button ng-click="vm.item.IsInstalment = true;vm.reset()"
+                                                data-dismiss="modal" data-toggle="modal"
+                                                data-target="#buyModal"
+                                                class="d-flex text-white btn btn-outline-warning">
+                                            خرید اقساطی
+                                        </button>
+
+                                        <button ng-click="vm.item.IsInstalment = false;vm.reset()"
+                                                data-dismiss="modal" data-toggle="modal"
+                                                data-target="#buyModal" style="margin-right:10px"
+                                                class="d-flex text-white btn btn-outline-success">
+                                            خرید نقدی
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 container">
+                    <div class="row ">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-6 col-lg-6">
+                            <div style="height:160px!important" class="card l-bg-green-dark">
+                                <div class="card-statistic-3 p-4">
+                                    <!--<div class="card-icon card-icon-large"><i class="icofont-money-bag"></i></div>-->
+                                    <div class="mb-4">
+                                        <h5 class="card-title mb-0">کیف پول</h5>
+                                    </div>
+                                    <div class="row align-items-center mb-2 d-flex">
+                                        <!--<div class="col-8">
+                                            <h2 style="color: whitesmoke" class="d-flex align-items-center mb-0">
+                                                {{vm.walletCash | NumberToMoney}} تومان
+                                            </h2>
+                                        </div>-->
+
+                                        <div class="d-flex">
+                                            <div class="d-flex">
+                                                <h2 style="color: whitesmoke" class="align-items-center mb-0">
+                                                    {{vm.walletCash | NumberToMoney}} تومان
+                                                </h2>
+                                            </div>
+                                            <div ng-if="vm.blockedWalletCash != 0" class="d-flex">
+                                                <h4 style="color: lightgray;margin-top:10px;margin-right:50px" class="align-items-center mb-0">
+                                                    مسدود: {{vm.blockedWalletCash | NumberToMoney}} تومان
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-6 col-lg-6">
+                            <div style="height:160px!important" class="card l-bg-orange-dark">
+                                <div class="card-statistic-3 p-4">
+                                    <div class="mb-4">
+                                        <h5 class="card-title mb-0">صندوق طلا</h5>
+                                    </div>
+                                    <div class="row align-items-center mb-2 d-flex">
+                                        <!--<div class="col-8">
+                                            <h2 style="color:whitesmoke" class="d-flex align-items-center mb-0">
+                                                {{vm.walletGold}} گرم
+                                            </h2>
+                                        </div>-->
+
+                                        <div class="d-flex">
+                                            <div class="d-flex">
+                                                <h2 style="color: whitesmoke" class="align-items-center mb-0">
+                                                    {{vm.walletGold}} گرم
+                                                </h2>
+                                            </div>
+                                            <div ng-if="vm.blockedWalletGold != 0" class="d-flex">
+                                                <h4 style="color: lightgray;margin-top:10px;margin-right:50px" class="align-items-center mb-0">
+                                                    مسدود: {{vm.blockedWalletGold}} گرم
+                                                </h4>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 container">
+                    <div class="row ">
+                        <div class="col-12">
+                            <div class="card l-bg-cherry">
+                                <div class="card-statistic-3 p-4">
+                                    <div style="margin-right: 650px;" class="card-icon card-icon-large">
+                                    </div>
+                                    <div class="mb-4">
+                                        <h5 class="card-title mb-0">مضاربه</h5>
+                                    </div>
+                                    <div class="row align-items-center mb-2 d-flex">
+
+                                        <div class="d-flex">
+                                            <div class="d-flex">
+                                                <h2 style="color: whitesmoke" class="align-items-center mb-0">
+                                                    {{vm.partnership | NumberToMoney}} تومان
+                                                </h2>
+                                            </div>
+                                            <div ng-if="vm.blockedPartnership != 0" class="d-flex">
+                                                <h4 style="color: darkgray;margin-top:10px;margin-right:50px" class="align-items-center mb-0">
+                                                    مسدود: {{vm.blockedPartnership | NumberToMoney}} تومان
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div  style="height:160px!important" class="wallet-widget card">
+                        <h5>اقساط امروز</h5>
+                        <h2><span class="text-warning">{{vm.todayInstalment | NumberToMoney}}</span> <sub>تومان</sub></h2>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div style="height:160px!important" class="wallet-widget card">
+                        <h5>سودهای امروز</h5>
+                        <h2><span class="text-danger">{{vm.todayProfits | NumberToMoney}}</span> <sub>تومان</sub></h2>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div style="height:160px!important" class="wallet-widget card">
+                        <h5>اقساط پرداخت نشده</h5>
+                        <h2><span class="text-danger">{{vm.totalNotPayedInstalment | NumberToMoney}}</span> <sub>تومان</sub></h2>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div style="height:160px!important" class="wallet-widget card">
+                        <h5>تعداد اقساط باقی مانده</h5>
+                        <h2><span class="text-warning">{{vm.notPayedInstalmentCount}}</span></h2>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div style="height:160px!important" class="wallet-widget card">
+                        <h5>قسط بعدی</h5>
+                        <h2><span class="text-success">{{vm.nextInstalment}}</span></h2>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="buyModal" tabindex="-1">
+        <div id="modal1" style="margin-top:150px" class="modal-dialog">
+            <div id="modal2" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">خرید طلا</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form name="form" ng-submit="vm.changeStep('2')" novalidate class="identity-upload">
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <!--<div class="form-check col-5">
+                                    <label style="margin-right:20px" class="form-label">کیف پول</label>
+                                    <input class="form-check-input" id="radWallet" name="default-radio-1" type="radio" value="" />
+                                </div>
+                                <div class="form-check col-6">
+                                    <label style="margin-right:20px" class="form-label">خرید مستقیم</label>
+                                    <input checked class="form-check-input" id="radCash" name="default-radio-1" type="radio" value="" />
+                                </div>-->
+
+                                <div class="card_radio_body card_radio_container">
+                                    <div class="grid-wrapper grid-col-auto">
+                                        <label for="radWallet" class="radio-card">
+                                            <input type="radio" name="radio-card" id="radWallet" checked />
+                                            <div class="card-content-wrapper">
+                                                <span class="check-icon"></span>
+                                                <div class="card-content">
+                                                    <img class="card_radio_img" src="../../../images/wallet.png"
+                                                         alt="" />
+                                                    <h4>کیف پول</h4>
+                                                    <h5>از طریق موجودی کیف پولتان میتوانید طلا خریداری کنید</h5>
+                                                </div>
+                                            </div>
+                                        </label>
+
+                                        <label for="radCash" class="radio-card">
+                                            <input type="radio" name="radio-card" id="radCash" />
+                                            <div class="card-content-wrapper">
+                                                <span class="check-icon"></span>
+                                                <div class="card-content">
+                                                    <img class="card_radio_img" src="../../../images/creditCard.png"
+                                                         alt="" />
+                                                    <h4>خرید مستقیم</h4>
+                                                    <h5>خرید طلا از طریق درگاه پرداخت امن بانکی صورت میگیرد</h5>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <button style="float:left!important;margin-top:20px" type="submit"
+                                    class="text-left btn btn-success pl-5 pr-5 waves-effect">
+                                ادامه
+                            </button>
+                        </div>
+                    </form>
+
+                    <div style="display:none;margin-bottom:10px" id="panelMoneyAndGram">
+                        <div class="form-check col-12" style="padding-right:0px!important">
+                            <label style="margin-right:20px" class="form-label">محاسبه با تومان</label>
+                            <input ng-click="vm.radTitle = 'مقدار به تومان'"
+                                   checked class="form-check-input" id="radMoney" name="default-radio-2" type="radio" value="" />
+                        </div>
+                        <div class="form-check col-12" style="padding-right:0px!important">
+                            <label style="margin-right:20px" class="form-label">محاسبه با گرم</label>
+                            <input ng-click="vm.radTitle = 'مقدار به گرم'"
+                                   class="form-check-input" id="radGram" name="default-radio-2" type="radio" value="" />
+                        </div>
+                    </div>
+
+                    <form style="display:none" name="form1" ng-submit="vm.changeStep('3')" novalidate class="identity-upload">
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <label class="form-label">{{vm.radTitle}}</label>
+                                <input ng-model="vm.item.Value" name="Value"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+
+                            <div ng-if="vm.calculateTotalAmount" class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>قیمت کل</td>
+                                            <td>
+                                                <div class="text-success">{{vm.calculateTotalAmount | NumberToMoney}} تومان</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>وزن به گرم</td>
+                                            <td>
+                                                <div class="text-success">{{vm.calculateTotalGram}} گرم</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="my_gold_update bg-warning" id="counter1">10 ثانیه تا بروزرسانی قیمت ...</div>
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <button ng-if="vm.calculateTotalAmount"
+                                    style="float:left!important;margin-top:20px;margin-right:5px" type="submit"
+                                    class="text-left btn btn-success pl-5 pr-5 waves-effect">
+                                ثبت درخواست
+                            </button>
+
+                            <button ng-click="vm.calculate()" style="float:left!important;margin-top:20px" type="button"
+                                    class="text-left btn btn-primary pl-5 pr-5 waves-effect">
+                                محاسبه
+                            </button>
+                        </div>
+                    </form>
+
+                    <form style="display:none" name="form2" ng-submit="vm.changeStep('4')" novalidate class="identity-upload">
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <label class="form-label">{{vm.radTitle}}</label>
+                                <input ng-model="vm.item.Value" name="Value"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="col-6"
+                                 ng-class="{'has-error':form2.$submitted && form2.PrePayment.$error.required}">
+                                <label class="form-label">درصد پیش پرداخت {{vm.item.PrePayment}}%</label>
+                                <input value="30" min="30" max="50" style="direction:ltr!important" ng-model="vm.item.PrePayment" required name="PrePayment"
+                                       type="range" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-6"
+                                 ng-class="{'has-error':form2.$submitted && form2.MonthCount.$error.required}">
+                                <label class="form-label">تعداد اقساط {{vm.item.MonthCount}} ماه</label>
+                                <input value="3" min="3" max="6" style="direction:ltr!important" ng-model="vm.item.MonthCount" required name="MonthCount"
+                                       type="range" class="form-control" placeholder="">
+                            </div>
+
+                            <div ng-if="vm.calculateTotalAmount" class="table-responsive">
+
+                                <div class="row col-12">
+                                    <div class="col-6">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>قیمت کل</td>
+                                                    <td>
+                                                        <div class="text-success">{{vm.calculateTotalAmount | NumberToMoney}} تومان</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>وزن به گرم</td>
+                                                    <td>
+                                                        <div class="text-success">{{vm.calculateTotalGram}} گرم</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>پیش پرداخت</td>
+                                                    <td>
+                                                        <div class="text-success">{{vm.calculatePrePayment | NumberToMoney}} تومان</div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <table class="table col-6">
+                                            <tbody>
+                                                <tr>
+                                                    <td>تعداد اقساط</td>
+                                                    <td>
+                                                        <div class="text-success">{{vm.calculateMonthCount}} ماه</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>مبلغ هر قسط</td>
+                                                    <td>
+                                                        <div class="text-success">{{vm.calculateEachMonthAmount | NumberToMoney}} تومان</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>حداقل مبلغ ضمانت</td>
+                                                    <td>
+                                                        <div class="text-success">{{vm.calculateWarrantyAmount | NumberToMoney}} تومان</div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <hr />
+
+                                <div class="row col-12">
+                                    <div class="col-5">
+                                        <label class="form-label">منبع ضمانت</label>
+                                        <select name="Priority" class="form-control" ng-model="vm.warranty.WarrantyType"
+                                                ng-init="vm.warranty.WarrantyType || vm.warrantyTypes[0].id"
+                                                ng-options="option.id as option.title for option in vm.warrantyTypes"
+                                                required>
+                                        </select>
+                                    </div>
+                                    <div class="col-5">
+                                        <label class="form-label">مقدار</label>
+                                        <input ng-model="vm.warranty.Value" name="Value"
+                                               type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-2">
+                                        <a ng-click="vm.addWarranty()" style="color:black!important;margin-top:28px"
+                                           class="text-white btn btn-outline-success">
+                                            افزودن
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="nav-align-top">
+                                    <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
+                                        <div class="card-datatable table-responsive">
+                                            <table class="datatables-users table">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>ردیف</th>
+                                                        <th>منبع ضمانت</th>
+                                                        <th>مقدار</th>
+                                                        <th>مبلغ کل</th>
+                                                        <th></th>
+                                                    </tr>
+                                                    <tr ng-repeat="row in vm.warranties">
+                                                        <td data-title="'ردیف'">
+                                                            {{$index + 1}}
+                                                        </td>
+                                                        <td data-title="'منبع ضمانت'">
+                                                            {{vm.allWarrantyTypes[row.WarrantyType].title}}
+                                                        </td>
+                                                        <td data-title="'مقدار'">
+                                                            {{row.Value | NumberToMoney}}
+                                                        </td>
+                                                        <td data-title="'مبلغ کل'">
+                                                            {{row.Amount | NumberToMoney}}
+                                                        </td>
+                                                        <td style="text-align:left!important;padding-top:15px!important">
+                                                            <span style="cursor:pointer;color:red">
+                                                                <i title="حذف" ng-click="vm.deleteWarranty(row.Id)"
+                                                                   class="icofont-ui-delete"></i>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>مجموع مبالغ ضمانت شما</td>
+                                            <td>
+                                                <div class="text-success">{{vm.totalWarrantyAmount | NumberToMoney}} تومان</div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                                <div class="my_gold_update bg-warning" id="counter2">10 ثانیه تا بروزرسانی قیمت ...</div>
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <button ng-if="vm.calculateTotalAmount"
+                                    style="float:left!important;margin-top:20px;margin-right:5px" type="submit"
+                                    class="text-left btn btn-success pl-5 pr-5 waves-effect">
+                                ثبت درخواست
+                            </button>
+
+                            <button ng-click="vm.onClickCalculate()" style="float:left!important;margin-top:20px" type="button"
+                                    class="text-left btn btn-primary pl-5 pr-5 waves-effect">
+                                محاسبه
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/vendor/apexchart/apexcharts.min.js"></script>
+    <script src="/js/plugins/apex-price.js"></script>
+
+</div>

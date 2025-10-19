@@ -1,0 +1,75 @@
+﻿<div ng-controller="dashboardController as vm" ng-init="vm.initializeController()">
+    <div class="content-body">
+        <div class="container">
+            <div class="row">
+
+                <!--<div class="col-12">
+                    <div style="background-color:palegoldenrod" class="wallet-widget card">
+                        <h5>قیمت طلا</h5>
+                        <h2><span class="text-primary">{{vm.goldValue | NumberToMoney}}</span> <sub>تومان</sub></h2>
+                    </div>
+                </div>-->
+
+                <div  class="col-12 container">
+                    <div  class="row">
+                        <div class="col-12">
+                            <div class="card l-bg-blue-dark">
+                                <div style="height:200px"  class="card-statistic-3 p-4">
+                                    <div style="margin-top:35px" class="mb-4">
+                                        <h5 class="text-warning card-title mb-0">قیمت طلا</h5>
+                                    </div>
+                                    <div class="row align-items-center mb-2 d-flex">
+                                        <div class="col-8">
+                                            <h2 id="lblGoldValue" style="color: whitesmoke;display:none!important" class="d-flex align-items-center mb-0">
+                                                {{vm.goldValue | NumberToMoney}} تومان
+                                            </h2>
+                                            <div id="counter">10 ثانیه تا بروزرسانی قیمت ...</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div style="height:160px!important" class="wallet-widget card">
+                        <h5>تعداد کاربران</h5>
+                        <h2><span class="text-primary">{{vm.userCount}}</span></h2>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div style="height:160px!important" class="wallet-widget card">
+                        <h5>تعداد تیکت های جدید</h5>
+                        <h2><span class="text-success">{{vm.newTicketCount}}</span></h2>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div style="height:160px!important" class="wallet-widget card">
+                        <h5>اقساط امروز</h5>
+                        <h2><span class="text-warning">{{vm.todayInstalment | NumberToMoney}}</span> <sub>تومان</sub></h2>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div style="height:160px!important" class="wallet-widget card">
+                        <h5>تسویه سودهای امروز</h5>
+                        <h2><span class="text-danger">{{vm.todayProfits | NumberToMoney}}</span> <sub>تومان</sub></h2>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div style="height:160px!important" class="wallet-widget card">
+                        <h5>تعداد قراردادهای فعال</h5>
+                        <h2><span class="text-warning">{{vm.activeContractCount}}</span></h2>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div style="height:160px!important" class="wallet-widget card">
+                        <h5>تعداد اقساط معوقه</h5>
+                        <h2><span class="text-success">{{vm.notPayedInstalmentCount}}</span></h2>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

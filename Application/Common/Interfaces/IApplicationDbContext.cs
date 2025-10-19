@@ -1,0 +1,25 @@
+﻿using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
+namespace Application.Common.Interfaces
+{
+    public interface IApplicationDbContext
+    {
+        DbSet<Certificate> Certificates { get; set; }
+        DbSet<Cv> Cvs { get; set; }
+        DbSet<Document> Documents { get; set; }
+        DbSet<Education> Educations { get; set; }
+        DbSet<Experience> Experiences { get; set; }
+        DbSet<Skill> Skills { get; set; }
+        DbSet<ResponseSuggest> ResponseSuggests { get; set; }
+        DbSet<Suggest> Suggests { get; set; }
+        DbSet<IdentityUserRole<string>> AspNetUserRoles { get; set; }
+        DbSet<ApplicationRole> AspNetRoles { get; set; }
+        DbSet<ApplicationUser> Users { get; set; }
+        DbSet<Ticket> Tickets { get; set; }
+        DbSet<TicketMessage> TicketMessages { get; set; }
+
+        Task<int> SaveChangesAsync();
+    }
+}

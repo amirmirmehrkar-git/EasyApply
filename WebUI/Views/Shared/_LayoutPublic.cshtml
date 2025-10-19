@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html ng-controller="masterController as vm" ng-init="vm.initializeController()" ng-app="myapp" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Easy Apply</title>
+
+    <link rel="manifest" href="/manifest.json">
+
+    <link rel="stylesheet" href="/css/myStyles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="/css/toastr.min.css" asp-append-version="true" />
+    <link href="/css/ng-table.min.css" rel="stylesheet">
+    <link href="/css/ADM-dateTimePicker.min.css" rel="stylesheet">
+    <link href="/css/isteven-multi-select.css" rel="stylesheet">
+    <link href="/css/bootstrap-rtl.min.css" rel="stylesheet">
+    @* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> *@
+
+    <link href="/css/tabler-icons.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/myDesign.css">
+    <link rel="stylesheet" href="css/myMenu.css">
+
+</head>
+<body>
+
+    <span us-spinner="{radius:30, width:8, length: 16}">
+    </span>
+    <div id="loaderContainer" ng-show="spinnerActive">
+        <div class="loaderLogo">
+            <div class="loader">
+            </div>
+        </div>
+    </div>
+
+    <header style="padding-left:150px!important;padding-right:150px" class="site-header">
+
+        <a class="brand">
+            <i id="btnMenu" style="display:none!important" onclick="toggleMenu()" class="d-flex ti ti-menu-2"></i>
+            <div class="logo-mark">EA</div>
+            <div class="logo-all">
+                <div class="step-title" style="margin-bottom:5px;font-weight:800">Easy Actions</div>
+                <div style="margin-bottom:12px;font-weight:400;font-size:10px">Your AI career co-pilot</div>
+            </div>
+        </a>
+
+        <nav class="top-nav" role="navigation" aria-label="Main Navigation">
+            <a href="#features">Features</a>
+            <a href="#platforms">Platforms</a>
+            <a class="btn ghost" href="#pricing">Pricing</a>
+            <a class="btn primary" href="#!/login">Get Started</a>
+        </nav>
+    </header>
+
+    <div class="col-12">
+        @RenderBody()
+    </div>
+
+    <footer class="site-footer" role="contentinfo">
+        <div style="text-align:center">
+            <div class="step-title" style="margin-bottom:5px;font-weight:800">Easy Actions</div>
+            <div style="margin-bottom:12px;font-weight:400;font-size:10px">Your AI career co-pilot</div>
+            <p class="small">© 2024 Easy Actions. All rights reserved. Made with ❤️ for ambitious professionals.</p>
+            <div style="margin-top:12px;display:flex;gap:14px;justify-content:center">
+                <a href="#" style="color:var(--muted);text-decoration:none;font-weight:700">Privacy</a>
+                <a href="#" style="color:var(--muted);text-decoration:none;font-weight:700">Terms</a>
+                <a href="#" style="color:var(--muted);text-decoration:none;font-weight:700">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="sidebar" ng-controller="profileController as vm" ng-init="vm.initializeController()">
+        <div class="sidebar-header">
+            <h3>Easy Actions</h3>
+            <span class="subtitle">AI Co-pilot</span>
+            <button class="close-btn" onclick="toggleMenu()">×</button>
+        </div>
+
+        <div class="user-info">
+            <div class="avatar">G</div>
+            <div>
+                <div class="user-name">Google User</div>
+                <div class="user-email">user@google.com</div>
+                <span class="plan">free Plan</span>
+            </div>
+        </div>
+
+        <ul ng-if="vm.UserRole == 'User'" class="menu-list">
+            <li ng-click="vm.goTo('/user/dashboard')"><i class="ti ti-home"></i> Home</li>
+
+            @**@
+            <li ng-click="vm.showSubmenu = !vm.showSubmenu">
+                <i class="ti ti-calendar"></i>
+                Profile
+                <i class="arrow ti ti-chevron-down"></i>
+            </li>
+
+            <li ng-click="vm.goTo('/user/skills')" ng-if="vm.showSubmenu" class="my_submenu">
+                Skills
+            </li>
+            <li ng-click="vm.goTo('/user/experiences')" ng-if="vm.showSubmenu" class="my_submenu">
+                Experiences
+            </li>
+            <li ng-click="vm.goTo('/user/educations')" ng-if="vm.showSubmenu" class="my_submenu">
+                Educations
+            </li>
+            <li ng-click="vm.goTo('/user/certificates')" ng-if="vm.showSubmenu" class="my_submenu">
+                Certificates
+            </li>
+            <li ng-click="vm.goTo('/user/documents')" ng-if="vm.showSubmenu" class="my_submenu">
+                Files
+            </li>
+            @**@
+
+            <li ng-click="vm.goTo('/user/jobTracker')"><i class="ti ti-calendar"></i> Job Tracker</li>
+            <li ng-click="vm.goTo('/user/smartUpload')"><i class="ti ti-file-text"></i> Documents</li>
+            <li ng-click="vm.goTo('/user/tickets')"><i class="ti ti-headset"></i> Tickets</li>
+            <li ng-click="vm.goTo('/user/setting')"><i class="ti ti-settings"></i> Settings</li>
+        </ul>
+
+        <ul ng-if="vm.UserRole == 'Admin'" class="menu-list">
+            <li ng-click="vm.goTo('/admin/dashboard')"><i class="ti ti-home"></i> Home</li>
+            <li ng-click="vm.goTo('/admin/users')"><i class="ti ti-calendar"></i> Users</li>
+            <li ng-click="vm.goTo('/admin/tickets')"><i class="ti ti-settings"></i> Tickets</li>
+        </ul>
+
+        <div class="logout-section">
+            <a href="@Url.Action("logoff", "account", new { area = "" })" class="col-md-12 logout-btn"><i class="ti ti-logout"></i> Logout</a>
+        </div>
+    </div>
+
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/toastr.min.js"></script>
+    <script src="/js/myJavaScripts.js"></script>
+    <script src="/js/angularjs/angular.js"></script>
+    <script src="/js/angularjs/angular-route.js"></script>
+    <script src="/js/ng-table.min.js"></script>
+    <script src="/js/ngFileUpload.js"></script>
+    <script src="/js/angular-loading-spinner.js"></script>
+    <script src="/js/ADM-dateTimePicker.min.js"></script>
+    <script src="/js/fullcalendar-Jalaali/moment.min.js"></script>
+    <script src="/js/moment-timezone.min.js"></script>
+    <script src="/js/fullcalendar-Jalaali/moment-jalaali.js"></script>
+    <script src="/js/fullcalendar-Jalaali/fullcalendar.min.js"></script>
+    <script src="/js/fullcalendar-Jalaali/local/fa.js"></script>
+    <script src="/js/ng-intl-tel-input/intlTelInput.js"></script>
+    <script src="/js/ng-intl-tel-input/utils.js"></script>
+    <script src="/js/ng-intl-tel-input/ng-intl-tel-input.js"></script>
+    <script src="/js/isteven-multi-select.js"></script>
+
+    <script src="/angularjs/controllers/masterController.js"></script>
+    <script src="/angularjs/services/ajaxService.js"></script>
+    <script src="/angularjs/services/profileService.js"></script>
+    <script src="/angularjs/controllers/routing.js"></script>
+    <script src="/angularjs/services/enums.js"></script>
+    <script src="/angularjs/controllers/dashboardController.js"></script>
+    <script src="/angularjs/controllers/userController.js"></script>
+    <script src="/angularjs/controllers/ticketController.js"></script>
+    <script src="/angularjs/controllers/profileController.js"></script>
+    <script src="/angularjs/controllers/skillController.js"></script>
+    <script src="/angularjs/controllers/experienceController.js"></script>
+    <script src="/angularjs/controllers/educationController.js"></script>
+    <script src="/angularjs/controllers/certificateController.js"></script>
+    <script src="/angularjs/controllers/documentController.js"></script>
+    <script src="/angularjs/controllers/suggestController.js"></script>
+
+</body>
+</html>

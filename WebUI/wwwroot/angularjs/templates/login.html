@@ -1,0 +1,66 @@
+﻿<div style="display: flex; align-items: center; justify-content: center" 
+     ng-controller="masterController as vm" ng-init="vm.initializeController()">
+
+    <div class="auth-card">
+        <div class="robot-circle" style="height:70px;width:70px" aria-hidden="true">
+            <img src="/images/logo.png" style="height:50px">
+        </div>
+        <h1>Welcome Back</h1>
+
+        <!-- CSS-only tabs -->
+        <input type="radio" id="tab-login" name="auth" checked>
+        <input type="radio" id="tab-register" name="auth">
+
+        <div class="tabs">
+            <label for="tab-login">Login</label>
+            <label for="tab-register">Register</label>
+        </div>
+
+        <div class="tab-content">
+            <!-- LOGIN -->
+            <section id="login">
+                <div class="field">
+                    <label>Email</label>
+                    <input ng-model="vm.item.PhoneNumber" type="email" placeholder="you@example.com">
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input ng-model="vm.item.Password" type="password" placeholder="••••••••">
+                </div>
+                <a ng-click="vm.login()" class="btn">Login</a>
+                <div class="switch-text">
+                    Don't have an account? <span>Register</span>
+                </div>
+            </section>
+
+            <!-- REGISTER -->
+            <section id="register">
+                <div class="row">
+                    <div class="col-md-6 field">
+                        <label>First Name</label>
+                        <input ng-model="vm.item.FirstName" type="text" placeholder="Your name">
+                    </div>
+                    <div class="col-md-6 field">
+                        <label>Last Name</label>
+                        <input ng-model="vm.item.LastName" type="text" placeholder="Your name">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input ng-model="vm.item.PhoneNumber" type="email" placeholder="you@example.com">
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input ng-model="vm.item.Password" type="password" placeholder="Create a password">
+                </div>
+                <button ng-click="vm.signUp()" class="btn">Register</button>
+                <div class="switch-text">
+                    Already have an account? <span>Login</span>
+                </div>
+            </section>
+        </div>
+
+        <div class="footer-note">© 2025 Easy Actions. All rights reserved.</div>
+    </div>
+
+</div>

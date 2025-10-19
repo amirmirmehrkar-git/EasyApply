@@ -1,0 +1,115 @@
+﻿<div ng-controller="userController as vm" ng-init="vm.initializeController()">
+    <div class="content-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">پروفایل</h4>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-xl-6 col-lg-6">
+
+                                    <div ng-if="vm.item.Active == false" class="card welcome-profile">
+                                        <div style="background-color:coral" class="card-body">
+                                            <h4 style="font-size:15px">در حال حاضر حساب شما تایید نشده است</h4>
+                                            <h6 style="font-size:15px">برای تایید حساب خود ابتدا تصویر کارت ملی و تصویر امضای خود را به درستی آپلود کنید</h6>
+                                        </div>
+                                    </div>
+                                    <div ng-if="vm.item.Active == true" class="card welcome-profile">
+                                        <div style="background-color:forestgreen" class="card-body">
+                                            <h4 style="font-size:15px">در حال حاضر حساب شما تایید شده است</h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="card welcome-profile">
+                                        <div class="card-body">
+                                            <img src="images/profile/2.png" alt="">
+                                            <h4>خوش آمدید, {{vm.item.FullName}}!</h4>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="row">
+                                            <label class="form-label">تصویر کارت ملی</label>
+                                            <img style="height:200px;width:300px;"
+                                                 ng-src="{{$root.domain}}/Content/Images/NationalImages/{{vm.NationalFileName}}" />
+                                        </div>
+                                        <div style="margin-top:20px">
+                                            <input type="file" accept="image/jpg, image/jpeg, image/png"
+                                                   ngf-select="UploadNationalFile($files)" />
+                                        </div>
+                                        <div style="margin-top:20px">
+                                            <div style="width: 100%!important;" class="myprogress progress-percent-bg">
+                                                <div style="width:auto!important" id="dvProgress1" ng-show="Progress >= 0"
+                                                     class="progress-bar progress-bar-striped bg-info">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr />
+
+                                    <div style="margin-top:50px!important">
+                                        <div class="row">
+                                            <label class="form-label">تصویر امضا</label>
+                                            <img style="height:200px;width:300px;"
+                                                 ng-src="{{$root.domain}}/Content/Images/SignatureImages/{{vm.SignatureFileName}}" />
+                                        </div>
+                                        <div style="margin-top:20px">
+                                            <input type="file" accept="image/jpg, image/jpeg, image/png"
+                                                   ngf-select="UploadSignatureFile($files)" />
+                                        </div>
+                                        <div style="margin-top:20px">
+                                            <div style="width: 100%!important;" class="myprogress progress-percent-bg">
+                                                <div style="width:auto!important" id="dvProgress2" ng-show="Progress >= 0"
+                                                     class="progress-bar progress-bar-striped bg-info">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-xxl-6 col-xl-6 col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <form name="form" ng-submit="vm.updateProfile()" novalidate>
+                                                <div class="row g-3">
+
+                                                    <div class="col-12">
+                                                        <label class="form-label">شماره شبا</label>
+                                                        <input ng-model="vm.item.Shba" name="Shba"
+                                                               type="text" class="form-control" placeholder="">
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label class="form-label">شماره حساب</label>
+                                                        <input ng-model="vm.item.BankAccount" name="BankAccount"
+                                                               type="text" class="form-control" placeholder="">
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label class="form-label">شماره کارت</label>
+                                                        <input ng-model="vm.item.CardNumber" name="CardNumber"
+                                                               type="text" class="form-control" placeholder="">
+                                                    </div>
+
+                                                    <div class="text-left col-12">
+                                                        <button type="submit" class="btn btn-success pl-5 pr-5 waves-effect">ذخیره</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

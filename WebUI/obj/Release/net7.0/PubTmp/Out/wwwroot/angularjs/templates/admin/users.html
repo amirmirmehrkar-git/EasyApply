@@ -1,0 +1,321 @@
+﻿<div ng-controller="userController as vm" ng-init="vm.initializeController()">
+    <div class="content-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">لیست کاربران</h4>
+                            <button style="height: 40px; margin-right: 1000px;" type="button" class="btn btn-primary"
+                                    ng-click="showFilter = !showFilter">
+                                فیلتر
+                            </button>
+                            <button style="height:40px" type="button" class="btn btn-primary"
+                                    data-dismiss="modal" data-toggle="modal"
+                                    data-target="#addUserModal">
+                                افزودن
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table ng-table="vm.tableParams" show-filter="showFilter"
+                                       class="table table-striped responsive-table">
+                                    <tbody>
+                                        <tr style="text-align:center"
+                                            ng-repeat="row in $data track by row.Id">
+                                            <td data-title="'ردیف'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{$index + 1}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'نام کامل'"
+                                                filter="{FullName: 'text'}" sortable="'FullName'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{row.FullName}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'شماره تماس'"
+                                                filter="{PhoneNumber: 'text'}" sortable="'PhoneNumber'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{row.PhoneNumber}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'تاریخ عضویت'"
+                                                filter="{CreateDate: 'ng-table/filters/datePicker.html'}" sortable="'PhoneNumber'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{row.CreateDate | persianDate:'dddd, jD jMMMM jYY'}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'عملیات'">
+                                                <span style="cursor:pointer;color:dimgray">
+                                                    <i title="تنظیمات" ng-click="vm.getRow(row);vm.getSettingByUserId(row)"
+                                                       data-dismiss="modal" data-toggle="modal" data-target="#settingModal"
+                                                       class="icofont-ui-settings"></i>
+                                                </span>
+                                                <span style="cursor:pointer;color:red">
+                                                    <i title="حذف" ng-click="vm.getRow(row)"
+                                                       data-dismiss="modal" data-toggle="modal" data-target="#deleteModal"
+                                                       class="icofont-ui-delete"></i>
+                                                </span>
+                                                <span style="cursor:pointer;color:cornflowerblue">
+                                                    <i title="ویرایش" ng-click="vm.getRow(row)"
+                                                       data-dismiss="modal" data-toggle="modal" data-target="#addUserModal"
+                                                       class="icofont-pencil"></i>
+                                                </span>
+                                                <span style="cursor:pointer;color:forestgreen">
+                                                    <i title="ورود به داشبورد" ng-click="vm.loginWithToken(row)"
+                                                       class="icofont-arrow-right"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addUserModal" tabindex="-1">
+        <div style="margin-top:150px" class="modal-dialog modal-lg">
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <h5 class="modal-title">افزودن کاربر</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form name="formAddOrUpdateUser" ng-submit="vm.addOrUpdateUser()" novalidate>
+                        <div class="row g-3">
+                            <div class="col-xl-6"
+                                 ng-class="{'has-error':formAddOrUpdateUser.$submitted && formAddOrUpdateUser.FirstName.$error.required}">
+                                <label class="form-label">نام</label>
+                                <input ng-model="vm.item.FirstName" required name="FirstName"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-6"
+                                 ng-class="{'has-error':formAddOrUpdateUser.$submitted && formAddOrUpdateUser.LastName.$error.required}">
+                                <label class="form-label">نام خانوادگی</label>
+                                <input ng-model="vm.item.LastName" required name="LastName"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-6"
+                                 ng-class="{'has-error':formAddOrUpdateUser.$submitted && formAddOrUpdateUser.PhoneNumber.$error.required}">
+                                <label class="form-label">شماره تماس</label>
+                                <input ng-model="vm.item.PhoneNumber" required name="PhoneNumber"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-6"
+                                 ng-class="{'has-error':formAddOrUpdateUser.$submitted && formAddOrUpdateUser.Password.$error.required}">
+                                <label class="form-label">رمز</label>
+                                <input ng-model="vm.item.Password" required name="Password"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label">شماره شبا</label>
+                                <input ng-model="vm.item.Shba" name="Shba"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">شماره حساب</label>
+                                <input ng-model="vm.item.BankAccount" name="BankAccount"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">شماره کارت</label>
+                                <input ng-model="vm.item.CardNumber" name="CardNumber"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="form-check form-switch mb-3" 
+                                 style="margin-bottom:30px;margin-right:10px;margin-top:30px">
+                                <label class="form-check-label" for="chkActive">فعال/غیرفعال</label>
+                                <input class="form-check-input" type="checkbox" id="chkActive" checked="">
+                            </div>
+
+                            <hr />
+
+                            <div style="margin-top:30px" class="row col-12">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <label class="form-label">تصویر کارت ملی</label>
+                                        <img style="height:200px;width:300px;"
+                                             ng-src="{{$root.domain}}/Content/Images/NationalImages/{{vm.NationalFileName}}" />
+                                    </div>
+                                    <!--<div style="margin-top:20px">
+                                        <input type="file" accept="image/jpg, image/jpeg, image/png"
+                                               ngf-select="UploadNationalFile($files)" />
+                                    </div>
+                                    <div style="margin-top:20px">
+                                        <div style="width: 100%!important;" class="myprogress progress-percent-bg">
+                                            <div style="width:auto!important" id="dvProgress1" ng-show="Progress >= 0"
+                                                 class="progress-bar progress-bar-striped bg-info">
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="row">
+                                        <label class="form-label">تصویر امضا</label>
+                                        <img style="height:200px;width:300px;"
+                                             ng-src="{{$root.domain}}/Content/Images/SignatureImages/{{vm.SignatureFileName}}" />
+                                    </div>
+                                    <!--<div style="margin-top:20px">
+                                        <input type="file" accept="image/jpg, image/jpeg, image/png"
+                                               ngf-select="UploadSignatureFile($files)" />
+                                    </div>
+                                    <div style="margin-top:20px">
+                                        <div style="width: 100%!important;" class="myprogress progress-percent-bg">
+                                            <div style="width:auto!important" id="dvProgress2" ng-show="Progress >= 0"
+                                                 class="progress-bar progress-bar-striped bg-info">
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <button style="float:left!important;margin-top:20px;margin-right:5px" type="submit"
+                                    class="text-left btn btn-success pl-5 pr-5 waves-effect">
+                                ذخیره
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div style="margin-top:150px" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">افزودن کاربر</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form ng-submit="vm.delete()" novalidate>
+                        <div class="row g-3" style="margin-bottom:20px">
+                            <h5 class="modal-title">آیا مایلید این مورد حذف شود؟</h5>
+                        </div>
+                        <button style="float:left!important;margin-top:20px;margin-right:5px" type="submit"
+                                class="text-left btn btn-danger pl-5 pr-5 waves-effect">
+                            حذف
+                        </button>
+                        <button style="float:left!important;margin-top:20px;margin-right:5px"
+                                data-dismiss="modal" aria-label="Close" type="button"
+                                class="text-left btn btn-outline-primary pl-5 pr-5 waves-effect">
+                            بستن
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="settingModal" tabindex="-1">
+        <div style="margin-top:150px" class="modal-dialog modal-xl">
+            <div class="modal-content modal-xl">
+                <div class="modal-header">
+                    <h5 class="modal-title">تنظیمات کاربر</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form name="form" ng-submit="vm.addOrUpdateUserSetting()" novalidate class="identity-upload">
+                        <div class="row g-3">
+                            <div class="col-xl-3"
+                                 ng-class="{'has-error':form.$submitted && form.MinInstalmentAmount.$error.required}">
+                                <label class="form-label">حداقل مبلغ اقساط</label>
+                                <input ng-model="vm.item.MinInstalmentAmount" required name="MinInstalmentAmount"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-3"
+                                 ng-class="{'has-error':form.$submitted && form.MaxInstalmentAmount.$error.required}">
+                                <label class="form-label">حداکثر مبلغ اقساط</label>
+                                <input ng-model="vm.item.MaxInstalmentAmount" required name="MaxInstalmentAmount"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-3"
+                                 ng-class="{'has-error':form.$submitted && form.MinPrePayment.$error.required}">
+                                <label class="form-label">درصد حداقل پیش پرداخت</label>
+                                <input ng-model="vm.item.MinPrePayment" required name="MinPrePayment"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-3"
+                                 ng-class="{'has-error':form.$submitted && form.MaxPrePayment.$error.required}">
+                                <label class="form-label">درصد حداکثر پیش پرداخت</label>
+                                <input ng-model="vm.item.MaxPrePayment" required name="MaxPrePayment"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-3"
+                                 ng-class="{'has-error':form.$submitted && form.MinMonth.$error.required}">
+                                <label class="form-label">حداقل تعداد اقساط</label>
+                                <input ng-model="vm.item.MinMonth" required name="MinMonth"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-3"
+                                 ng-class="{'has-error':form.$submitted && form.MaxMonth.$error.required}">
+                                <label class="form-label">حداکثر تعداد اقساط</label>
+                                <input ng-model="vm.item.MaxMonth" required name="MaxMonth"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-3"
+                                 ng-class="{'has-error':form.$submitted && form.MonthlyProfit.$error.required}">
+                                <label class="form-label">درصد سود ماهانه</label>
+                                <input ng-model="vm.item.MonthlyProfit" required name="MonthlyProfit"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-3"
+                                 ng-class="{'has-error':form.$submitted && form.LateFee.$error.required}">
+                                <label class="form-label">درصد ضرر روزانه</label>
+                                <input ng-model="vm.item.LateFee" required name="LateFee"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-3"
+                                 ng-class="{'has-error':form.$submitted && form.MinPartnershipAmount.$error.required}">
+                                <label class="form-label">حداقل مبلغ مضاربه</label>
+                                <input ng-model="vm.item.MinPartnershipAmount" required name="MinPartnershipAmount"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-3"
+                                 ng-class="{'has-error':form.$submitted && form.MaxPartnershipAmount.$error.required}">
+                                <label class="form-label">حداکثر مبلغ مضاربه</label>
+                                <input ng-model="vm.item.MaxPartnershipAmount" required name="MaxPartnershipAmount"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-3"
+                                 ng-class="{'has-error':form.$submitted && form.MinPartnershipMonth.$error.required}">
+                                <label class="form-label">حداقل تعداد سودهای مضاربه</label>
+                                <input ng-model="vm.item.MinPartnershipMonth" required name="MinPartnershipMonth"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-3"
+                                 ng-class="{'has-error':form.$submitted && form.MaxPartnershipMonth.$error.required}">
+                                <label class="form-label">حداکثر تعداد سودهای مضاربه</label>
+                                <input ng-model="vm.item.MaxPartnershipMonth" required name="MaxPartnershipMonth"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <button style="float:left!important;margin-top:20px" type="submit"
+                                    class="text-left btn btn-success pl-5 pr-5 waves-effect">
+                                ذخیره
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="ng-table/filters/datePicker.html">
+        <adm-dtp options="{dtpType:'date',format: 'YYYY/MM/DD'}" ng-model="params.filter()[name]" style="direction:ltr"></adm-dtp>
+    </script>
+
+</div>

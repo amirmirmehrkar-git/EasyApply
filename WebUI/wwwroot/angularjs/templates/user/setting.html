@@ -1,0 +1,286 @@
+﻿<div ng-controller="userController as vm" ng-init="vm.initializeController()">
+
+    <div class="wrap">
+
+        <div class="card" id="ai-queue" aria-labelledby="ai-queue-title">
+
+            <div class="row" style="margin-bottom:40px">
+                <div class="col-md-10">
+                    <h1 style="margin-top:20px;text-align:left!important;margin-bottom:0!important">
+                        <span style="font-size: 30px !important" class="sub-gradient">Settings & Preferences ⚙️</span>
+                    </h1>
+                    <p class="lead">
+                        Customize your AI-powered job search experience
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+
+                <input type="radio" id="tab-profile" name="tabs" checked>
+                <input type="radio" id="tab-notifs" name="tabs">
+                <input type="radio" id="tab-automation" name="tabs">
+                <input type="radio" id="tab-security" name="tabs">
+
+                <div class="tabs" aria-hidden="false">
+                    <label for="tab-profile">Profile</label>
+                    <label for="tab-notifs">Notifications</label>
+                    <label for="tab-automation">AI Automation</label>
+                    <label for="tab-security">Security</label>
+                </div>
+
+                <div class="tab-contents">
+
+                    <section id="profile">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                            <div>
+                                <h2 class="sub-gradient" style="font-size:20px;margin-bottom:6px">Profile Information</h2>
+                                <p class="small-note">Keep your profile updated for better job matching</p>
+                            </div>
+                        </div>
+
+                        <style>
+                        </style>
+
+                        <div class="profile-container">
+                            <!--<div class="profile-header">
+        <div class="profile-photo">
+            <img src="https://via.placeholder.com/100" alt="User Photo">
+        </div>
+        <div class="profile-info">
+            <h3>Google User</h3>
+            <p>user@google.com</p>
+            <button class="upload-btn">
+                <i class="ti ti-upload"></i> Upload Photo
+            </button>
+        </div>
+    </div>-->
+
+                            <div class="details-section">
+                                <div class="card personal-details">
+                                    <h4><i class="ti ti-user"></i> Personal Details</h4>
+
+                                    <div class="row ">
+                                        <div class="col-md-6">
+                                            <label>First Name</label>
+                                            <input type="text" ng-model="vm.item.FirstName">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>Last Name</label>
+                                            <input type="text" ng-model="vm.item.LastName">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label>Email Address</label>
+                                        <input disabled type="email" ng-model="vm.item.PhoneNumber">
+                                    </div>
+                                </div>
+
+                                <div class="card contact-info">
+                                    <h4><i class="ti ti-map-pin"></i> Job Information</h4>
+                                    <div class="col-md-12">
+                                        <label>Needed Job</label>
+                                        <input type="text" ng-model="vm.item.NeededJob">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class=" d-flex flex-column align-items-center">
+                                <button ng-click="vm.updateProfile()" type="button"
+                                        class="btn btn-danger" id="confirmDelete">
+                                    Update
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- NOTIFICATIONS -->
+                    <section id="notifications">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                            <div>
+                                <h2 style="font-size:20px;margin-bottom:6px">Notification Preferences</h2>
+                                <p class="small-note">Choose how you want to be notified about your job search</p>
+                            </div>
+                        </div>
+
+                        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px">
+                            <!-- card1 -->
+                            <div class="mini-card">
+                                <div class="setting-row">
+                                    <div class="setting-left">
+                                        <div class="icon-box">📧</div>
+                                        <div>
+                                            <div class="setting-title">Email Responses</div>
+                                            <div class="setting-desc">Get notified when employers respond</div>
+                                        </div>
+                                    </div>
+                                    <div class="switch on" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <!-- card2 -->
+                            <div class="mini-card">
+                                <div class="setting-row">
+                                    <div class="setting-left">
+                                        <div class="icon-box">✅</div>
+                                        <div>
+                                            <div class="setting-title">Application Updates</div>
+                                            <div class="setting-desc">Status changes and confirmations</div>
+                                        </div>
+                                    </div>
+                                    <div class="switch on" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <!-- card3 -->
+                            <div class="mini-card">
+                                <div class="setting-row">
+                                    <div class="setting-left">
+                                        <div class="icon-box">📅</div>
+                                        <div>
+                                            <div class="setting-title">Interview Reminders</div>
+                                            <div class="setting-desc">Reminders before interviews</div>
+                                        </div>
+                                    </div>
+                                    <div class="switch on" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <!-- card4 -->
+                            <div class="mini-card">
+                                <div class="setting-row">
+                                    <div class="setting-left">
+                                        <div class="icon-box">📰</div>
+                                        <div>
+                                            <div class="setting-title">Weekly Digest</div>
+                                            <div class="setting-desc">Summary of your activity</div>
+                                        </div>
+                                    </div>
+                                    <div class="switch" aria-hidden="true"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:14px" class="note">Note: These controls are visual only in this static preview.</div>
+                    </section>
+
+                    <!-- AUTOMATION -->
+                    <section id="automation">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                            <div>
+                                <h2 style="font-size:20px;margin-bottom:6px">AI Automation Settings</h2>
+                                <p class="small-note">Configure how AI assists with your job applications</p>
+                            </div>
+                            <div><span class="badge">Recommended</span></div>
+                        </div>
+
+                        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px">
+                            <div class="mini-card">
+                                <div class="setting-row">
+                                    <div class="setting-left">
+                                        <div class="icon-box">🎯</div>
+                                        <div>
+                                            <div class="setting-title">Smart Application Timing</div>
+                                            <div class="setting-desc">Optimize send times for better responses</div>
+                                        </div>
+                                    </div>
+                                    <div class="switch on" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <div class="mini-card">
+                                <div class="setting-row">
+                                    <div class="setting-left">
+                                        <div class="icon-box">✉️</div>
+                                        <div>
+                                            <div class="setting-title">Auto Thank You</div>
+                                            <div class="setting-desc">Sends thank-you notes after interviews</div>
+                                        </div>
+                                    </div>
+                                    <div class="switch on" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <div class="mini-card">
+                                <div class="setting-row">
+                                    <div class="setting-left">
+                                        <div class="icon-box">🔁</div>
+                                        <div>
+                                            <div class="setting-title">Auto Follow-up</div>
+                                            <div class="setting-desc">Follow up if no response after 2 weeks</div>
+                                        </div>
+                                    </div>
+                                    <div class="switch" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <div class="mini-card">
+                                <div class="setting-row">
+                                    <div class="setting-left">
+                                        <div class="icon-box">📨</div>
+                                        <div>
+                                            <div class="setting-title">Feedback Request</div>
+                                            <div class="setting-desc">Ask for feedback after rejection</div>
+                                        </div>
+                                    </div>
+                                    <div class="switch on" aria-hidden="true"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:12px" class="note">AI Pro features are visually marked; enabling them in a real app requires account permissions.</div>
+                    </section>
+
+                    <!-- SECURITY -->
+                    <section id="security">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                            <div>
+                                <h2 style="font-size:20px;margin-bottom:6px">Privacy & Security</h2>
+                                <p class="small-note">Manage your account security and data privacy</p>
+                            </div>
+                        </div>
+
+                        <div style="display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px">
+                            <div class="mini-card">
+                                <h4>Account Security</h4>
+                                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+                                    <div>
+                                        <div style="font-weight:800">Password</div>
+                                        <div class="small-note">Last changed 3 months ago</div>
+                                    </div>
+                                    <a class="outline-btn" href="#">Change</a>
+                                </div>
+                            </div>
+
+                            <div class="mini-card">
+                                <h4>Two-Factor Authentication</h4>
+                                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+                                    <div>
+                                        <div style="font-weight:800">2FA</div>
+                                        <div class="small-note">Add an extra layer of security</div>
+                                    </div>
+                                    <a class="outline-btn" href="#">Enable</a>
+                                </div>
+                            </div>
+
+                            <div class="mini-card danger">
+                                <h4 style="color:#b91c1c">Danger Zone</h4>
+                                <p class="small-note" style="color:#7f1d1d">Permanently delete your account and all associated data. This action cannot be undone.</p>
+                                <div style="margin-top:10px;display:flex;gap:10px">
+                                    <a class="outline-btn" href="#" style="background:#fff5f5;border-color:rgba(185,28,28,0.08);color:#b91c1c">Delete Account</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

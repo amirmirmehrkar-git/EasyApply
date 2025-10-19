@@ -1,0 +1,127 @@
+﻿<div ng-controller="requestController as vm" ng-init="vm.initializeController()">
+    <div class="content-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                لیست درخواست ها
+                            </h4>
+                            <button style="height: 40px; margin-right: 1000px;" type="button" class="btn btn-primary"
+                                    ng-click="showFilter = !showFilter">
+                                فیلتر
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table ng-table="vm.tableParams" show-filter="showFilter"
+                                       class="table table-striped responsive-table">
+                                    <tbody>
+                                        <tr style="text-align:center"
+                                            ng-repeat="row in $data track by row.Id">
+                                            <td data-title="'ردیف'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{$index + 1}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'نام کامل'"
+                                                filter="{UserFullName: 'text'}" sortable="'UserFullName'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{row.UserFullName}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'شماره فاکتور'"
+                                                filter="{FactorId: 'text'}" sortable="'FactorId'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{row.FactorId}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'مبلغ'"
+                                                filter="{Amount: 'text'}" sortable="'Amount'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{row.Amount | NumberToMoney}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'نرخ'"
+                                                filter="{Rate: 'text'}" sortable="'Rate'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{row.Rate | NumberToMoney}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'تاریخ ثبت'"
+                                                filter="{CreateDate: 'ng-table/filters/datePicker.html'}" sortable="'CreateDate'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{row.CreateDate | persianDate:'dddd, jD jMMMM jYY'}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'تاریخ پرداخت'"
+                                                filter="{PayDate: 'ng-table/filters/datePicker.html'}" sortable="'PayDate'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{row.PayDate | persianDate:'dddd, jD jMMMM jYY'}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'نوع'"
+                                                sortable="'Type'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{vm.requestTypes[row.Type].title}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'وضعیت پرداخت'"
+                                                sortable="'State'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a ng-class="{'text-success':row.State == 0, 'text-danger':row.State == 1}">
+                                                        {{vm.paymentStates[row.State].title}}
+                                                    </a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'وضعیت'"
+                                                sortable="'Status'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a ng-class="{'text-warning':row.Status == 0, 'text-success':row.Status == 1, 'text-danger':row.Status == 2}">
+                                                        {{vm.paymentStatuses[row.Status].title}}
+                                                    </a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'عملیات'">
+                                                <span ng-if="row.State == 1" title="تغییر وضعیت" style="cursor: pointer; color: darkslategray">
+                                                    <button style="color:darkslategray"
+                                                            type="button" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
+                                                        <span class="icofont-exchange"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" style="left:0;right:auto;">
+                                                        <li>
+                                                            <a href="" ng-click="vm.updateStatus(row.Id,vm.paymentStatuses[0].id)"
+                                                               type="button" class="text-warning">در انتظار</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" ng-click="vm.updateStatus(row.Id,vm.paymentStatuses[1].id)"
+                                                               type="button" class="text-success">تایید</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" ng-click="vm.updateStatus(row.Id,vm.paymentStatuses[2].id)"
+                                                               type="button" class="text-danger">رد</a>
+                                                        </li>
+                                                    </ul>
+                                                </span>
+                                                <span ng-if="row.State == 1" style="cursor:pointer;color:green;font-size:15px">
+                                                    <i title="پرداخت" ng-click="vm.getPayLink(row.Id,vm.paymentStates[0].id)"
+                                                       class="icofont-ui-v-card"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="ng-table/filters/datePicker.html">
+        <adm-dtp options="{dtpType:'date',format: 'YYYY/MM/DD'}" ng-model="params.filter()[name]" style="direction:ltr"></adm-dtp>
+    </script>
+
+</div>

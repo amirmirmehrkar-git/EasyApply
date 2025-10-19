@@ -1,0 +1,10 @@
+C:\CoreCleanProjects\Maher\OsabiaWebUI\obj\Release\net7.0\PubTmp\Out\OsabiaWebUI.exe
+C:\CoreCleanProjects\Maher\OsabiaWebUI\obj\Release\net7.0\PubTmp\Out\appsettings.Development.json
+C:\CoreCleanProjects\Maher\OsabiaWebUI\obj\Release\net7.0\PubTmp\Out\appsettings.json
+C:\CoreCleanProjects\Maher\OsabiaWebUI\obj\Release\net7.0\PubTmp\Out\wwwroot\images\emptyImage.png
+C:\CoreCleanProjects\Maher\OsabiaWebUI\obj\Release\net7.0\PubTmp\Out\OsabiaWebUI.dll
+C:\CoreCleanProjects\Maher\OsabiaWebUI\obj\Release\net7.0\PubTmp\Out\OsabiaWebUI.deps.json
+C:\CoreCleanProjects\Maher\OsabiaWebUI\obj\Release\net7.0\PubTmp\Out\OsabiaWebUI.runtimeconfig.json
+C:\CoreCleanProjects\Maher\OsabiaWebUI\obj\Release\net7.0\PubTmp\Out\OsabiaWebUI.pdb
+C:\CoreCleanProjects\Maher\OsabiaWebUI\obj\Release\net7.0\PubTmp\Out\Newtonsoft.Json.dll
+C:\CoreCleanProjects\Maher\OsabiaWebUI\obj\Release\net7.0\PubTmp\Out\WebEssentials.AspNetCore.Pwa.dll

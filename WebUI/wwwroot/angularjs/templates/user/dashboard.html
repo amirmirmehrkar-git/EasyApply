@@ -1,0 +1,387 @@
+﻿<div ng-controller="dashboardController as vm" ng-init="vm.initializeController()">
+
+    <div class="container">
+
+        <!--<section class="hero-card" aria-label="Welcome">
+            <div class="hero-left">
+                <div style="display:flex;align-items:center;gap:10px;justify-content:space-between">
+                    <div>
+                        <div style="font-weight:800;color:var(--muted)">سلام، خوش برگشتی</div>
+                        <div class="hero-title">داشبورد شما — وضعیت فعلی جستجوی شغلی</div>
+                        <div class="hero-sub">نتایج، نوتیفیکیشن‌ها و صفِ درخواست‌های هوشمند اینجا نمایش داده می‌شود.</div>
+                    </div>
+                    <div style="display:flex;gap:8px;align-items:center">
+                        <a class="view-all" href="#ai-queue">نمایش همه</a>
+                    </div>
+                </div>
+
+                <div class="hero-actions" style="margin-top:12px">
+                    <a class="cta-primary" href="#!/user/smartUpload">آپلود رزومه</a>
+                    <a class="cta-ghost" href="#tracker">مشاهده ارسال‌ها</a>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="robot-circle" aria-hidden="true">🤖</div>
+            </div>
+        </section>-->
+        <!-- main grid -->
+        <!--<div class="main-grid">-->
+
+        <div class="card" id="ai-queue" aria-labelledby="ai-queue-title">
+
+            <div class="row" style="margin-bottom:40px">
+                <div class="col-md-10">
+                    <h1 style="margin-top:20px;text-align:left!important;margin-bottom:0!important">
+                        <span style="font-size: 30px !important" class="sub-gradient">Upload your resume now and start! ⚡</span>
+                    </h1>
+                    <p  class="lead">
+                        Your AI co-pilot is actively working. Let's find your dream job together.
+                    </p>
+                </div>
+                <div style="margin-top:35px" class="col-md-2">
+                    <nav class="top-nav" role="navigation" aria-label="Main Navigation">
+                        <a class="btn ghost" href="#pricing">Pause AI</a>
+                        <a class="btn primary" href="#!/login">Refresh</a>
+                    </nav>
+                </div>
+            </div>
+           
+
+            <div class="robot-circle" aria-hidden="true">
+                <img src="/images/logo.png" style="height:100px">
+            </div>
+
+            <h1 style="margin-top:20px">
+                <span class="sub-gradient">Let's Get Started!</span>
+            </h1>
+
+            <p style="margin-top:20px!important;padding-right:300px;padding-left:300px;text-align:center;margin-bottom:20px"
+               class="lead">
+                Upload your resume and documents. Our AI will analyze them and start finding perfect job matches across LinkedIn, Xing, StepStone, and Indeed.
+            </p>
+
+            <div class="row">
+                <div class="step-card col-md-2 d-flex flex-column align-items-center" 
+                     style="margin-left:60px;margin-right:20px;text-align:center">
+                    <div class="step-icon">
+                        <i class="ti ti-upload"></i>
+                    </div>
+                    <div class="step-desc">Upload Resume</div>
+                </div>
+
+                <div class="step-card col-md-2 d-flex flex-column align-items-center" style="margin-right:20px">
+                    <div class="step-icon">
+                        <i class="ti ti-circle-check"></i>
+                    </div>
+                    <div class="step-desc">AI Analysis</div>
+                </div>
+
+                <div class="step-card col-md-2 d-flex flex-column align-items-center" style="margin-right:20px">
+                    <div class="step-icon">
+                        <i class="ti ti-settings-automation"></i>
+                    </div>
+                    <div class="step-desc">Job Matching</div>
+                </div>
+
+                <div class="step-card col-md-2 d-flex flex-column align-items-center" style="margin-right:20px">
+                    <div class="step-icon">
+                        <i class="ti ti-mail"></i>
+                    </div>
+                    <div class="step-desc">Custom Applications</div>
+                </div>
+
+                <div class="step-card col-md-2 d-flex flex-column align-items-center" style="margin-right:20px">
+                    <div class="step-icon">
+                        <i class="ti ti-send"></i>
+                    </div>
+                    <div class="step-desc">Auto Send</div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12" style="text-align:center;margin-top:50px">
+                <a class="btn primary" href="#!/user/smartUpload">
+                    <i class="icofont-upload-alt"></i>
+                    Upload Resume & Start AI
+                </a>
+            </div>
+
+
+
+            <!--<div class="card-header">
+                <div>
+                    <div class="card-title" id="ai-queue-title">AI Job Queue</div>
+                    <div class="card-desc">Jobs found by AI — filtered and ready for application</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center">
+                    <div style="font-weight:800;color:#065f46;background:#ecfdf5;padding:6px 10px;border-radius:999px">AI Active</div>
+                    <a class="view-all" href="#tracker">View All →</a>
+                </div>
+            </div>
+
+            <div class="job-list" role="list">
+
+                <div class="job-item" role="listitem">
+                    <div class="job-left">
+                        <div class="platform-icon" aria-hidden="true">💼</div>
+                        <div class="job-meta">
+                            <div class="job-title">Frontend Developer</div>
+                            <div class="job-sub">Google • Berlin, Germany</div>
+                            <div class="job-extra">€70k - €90k • Posted 2 days ago</div>
+                        </div>
+                    </div>
+                    <div class="job-badges">
+                        <div class="badge match">96% match</div>
+                        <div class="badge status">Interview</div>
+                    </div>
+                </div>
+
+                <div class="job-item" role="listitem">
+                    <div class="job-left">
+                        <div class="platform-icon" aria-hidden="true">🔍</div>
+                        <div class="job-meta">
+                            <div class="job-title">Backend Engineer</div>
+                            <div class="job-sub">Microsoft • Munich, Germany</div>
+                            <div class="job-extra">€80k - €110k • Posted 4 days ago</div>
+                        </div>
+                    </div>
+                    <div class="job-badges">
+                        <div class="badge match">88% match</div>
+                        <div class="badge status">Applied</div>
+                    </div>
+                </div>
+
+                <div class="job-item" role="listitem">
+                    <div class="job-left">
+                        <div class="platform-icon" aria-hidden="true">🌐</div>
+                        <div class="job-meta">
+                            <div class="job-title">Fullstack Developer</div>
+                            <div class="job-sub">StartupXYZ • Remote</div>
+                            <div class="job-extra">€50k - €70k • Posted 6 days ago</div>
+                        </div>
+                    </div>
+                    <div class="job-badges">
+                        <div class="badge match">74% match</div>
+                        <div class="badge status">Saved</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="margin-top:12px;padding:12px;border-radius:12px;background:linear-gradient(90deg,#fff7ed,#fff4e6);border:1px solid rgba(249,115,22,0.06);display:flex;justify-content:space-between;align-items:center">
+                <div>
+                    <div style="font-weight:800;color:var(--orange-600)">AI Filtering Options</div>
+                    <div style="color:var(--orange-600);font-weight:700;font-size:13px">Salary: €50k+, Location: Germany, Type: Full-time</div>
+                </div>
+                <a class="view-all" href="#filters">Edit →</a>
+            </div>-->
+        </div>
+
+        <!-- LEFT COL -->
+        <!--<div class="left-col">-->
+        <!-- Today's Stats -->
+        <!--<div class="stats-grid" aria-hidden="false">
+            <div class="stat-card">
+                <div class="stat-label">Applications Today</div>
+                <div class="stat-value">24</div>
+                <div class="stat-suffix">فایل ارسال شده</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Cover Letters</div>
+                <div class="stat-value">8</div>
+                <div class="stat-suffix">ساخته شده</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Jobs Found</div>
+                <div class="stat-value">112</div>
+                <div class="stat-suffix">جدید</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Responses</div>
+                <div class="stat-value">15</div>
+                <div class="stat-suffix">دریافت شده</div>
+            </div>
+        </div>-->
+        <!-- AI Job Queue -->
+        <!--<div class="card" id="ai-queue" aria-labelledby="ai-queue-title">
+        <div class="card-header">
+            <div>
+                <div class="card-title" id="ai-queue-title">AI Job Queue</div>
+                <div class="card-desc">Jobs found by AI — filtered and ready for application</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+                <div style="font-weight:800;color:#065f46;background:#ecfdf5;padding:6px 10px;border-radius:999px">AI Active</div>
+                <a class="view-all" href="#tracker">View All →</a>
+            </div>
+        </div>
+
+        <div class="job-list" role="list">-->
+        <!-- job item 1 -->
+        <!--<div class="job-item" role="listitem">
+            <div class="job-left">
+                <div class="platform-icon" aria-hidden="true">💼</div>
+                <div class="job-meta">
+                    <div class="job-title">Frontend Developer</div>
+                    <div class="job-sub">Google • Berlin, Germany</div>
+                    <div class="job-extra">€70k - €90k • Posted 2 days ago</div>
+                </div>
+            </div>
+            <div class="job-badges">
+                <div class="badge match">96% match</div>
+                <div class="badge status">Interview</div>
+            </div>
+        </div>-->
+        <!-- job item 2 -->
+        <!--<div class="job-item" role="listitem">
+            <div class="job-left">
+                <div class="platform-icon" aria-hidden="true">🔍</div>
+                <div class="job-meta">
+                    <div class="job-title">Backend Engineer</div>
+                    <div class="job-sub">Microsoft • Munich, Germany</div>
+                    <div class="job-extra">€80k - €110k • Posted 4 days ago</div>
+                </div>
+            </div>
+            <div class="job-badges">
+                <div class="badge match">88% match</div>
+                <div class="badge status">Applied</div>
+            </div>
+        </div>-->
+        <!-- job item 3 -->
+        <!--<div class="job-item" role="listitem">
+                    <div class="job-left">
+                        <div class="platform-icon" aria-hidden="true">🌐</div>
+                        <div class="job-meta">
+                            <div class="job-title">Fullstack Developer</div>
+                            <div class="job-sub">StartupXYZ • Remote</div>
+                            <div class="job-extra">€50k - €70k • Posted 6 days ago</div>
+                        </div>
+                    </div>
+                    <div class="job-badges">
+                        <div class="badge match">74% match</div>
+                        <div class="badge status">Saved</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="margin-top:12px;padding:12px;border-radius:12px;background:linear-gradient(90deg,#fff7ed,#fff4e6);border:1px solid rgba(249,115,22,0.06);display:flex;justify-content:space-between;align-items:center">
+                <div>
+                    <div style="font-weight:800;color:var(--orange-600)">AI Filtering Options</div>
+                    <div style="color:var(--orange-600);font-weight:700;font-size:13px">Salary: €50k+, Location: Germany, Type: Full-time</div>
+                </div>
+                <a class="view-all" href="#filters">Edit →</a>
+            </div>
+        </div>-->
+        <!-- Email Center -->
+        <!--<div class="card" aria-labelledby="email-title">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title" id="email-title">Email Center</div>
+                        <div class="card-desc">Latest notifications and responses</div>
+                    </div>
+                    <div><a class="view-all" href="#email">All</a></div>
+                </div>
+
+                <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+                    <div class="notif-item urgent">
+                        <div class="notif-type" style="color:#b91c1c">📧 Response</div>
+                        <div class="notif-msg">TechCorp wants to schedule an interview</div>
+                        <div class="notif-time">2h ago</div>
+                    </div>
+
+                    <div class="notif-item note">
+                        <div class="notif-type" style="color:#065f46">✅ Applied</div>
+                        <div class="notif-msg">Application sent to StartupXYZ</div>
+                        <div class="notif-time">4h ago</div>
+                    </div>
+
+                    <div class="notif-item">
+                        <div class="notif-type" style="color:#0ea5e9">🔍 Found</div>
+                        <div class="notif-msg">12 new matching jobs found</div>
+                        <div class="notif-time">6h ago</div>
+                    </div>
+                </div>
+
+                <div style="margin-top:12px;display:flex;gap:8px">
+                    <a class="action-ghost" href="#email">Open Inbox</a>
+                    <a class="action-ghost" href="#settings">Notification Settings</a>
+                </div>
+            </div>
+
+        </div>-->
+        <!-- end left-col -->
+        <!-- RIGHT COL -->
+        <!--<aside class="right-col" style="display:flex;flex-direction:column;gap:18px">-->
+        <!-- Quick Actions -->
+        <!--<div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Quick Actions</div>
+                    <div class="card-desc">Manage your job search</div>
+                </div>
+            </div>
+
+            <div class="quick-list" style="margin-top:8px">
+                <a class="action-btn" href="#upload">📤 Upload New Resume</a>
+                <a class="action-ghost" href="#tracker">💼 View Applications</a>
+                <a class="action-ghost" href="#email">📩 Email Responses</a>
+                <a class="action-ghost" href="#settings">⚙️ AI Settings</a>
+            </div>
+        </div>-->
+        <!-- AI Performance -->
+        <!--<div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">AI Performance</div>
+                    <div class="card-desc">Your AI's success metrics</div>
+                </div>
+            </div>
+
+            <div style="margin-top:10px">
+                <div class="perf-row"><div style="font-weight:800;color:var(--muted)">Success Rate</div><div style="font-weight:900;color:#065f46">89%</div></div>
+                <div class="progress-wrap"><div class="progress-bar" style="width:89%"></div></div>
+
+                <div style="height:12px"></div>
+
+                <div class="perf-row"><div style="font-weight:800;color:var(--muted)">Response Rate</div><div style="font-weight:900;color:#0ea5e9">67%</div></div>
+                <div class="progress-wrap"><div class="progress-bar" style="width:67%"></div></div>
+
+                <div style="height:12px"></div>
+
+                <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+                    <div style="flex:1;padding:10px;border-radius:10px;background:linear-gradient(90deg,#ecfdf5,#f0fdf4);display:flex;justify-content:space-between;align-items:center">
+                        <div style="font-weight:800;color:#065f46">AI Optimizations</div><div style="font-weight:800;color:#065f46">ACTIVE</div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <!-- Compact profile / status card -->
+        <!--<div class="card">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+                    <div style="display:flex;align-items:center;gap:12px">
+                        <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--orange-500),var(--orange-600));display:flex;align-items:center;justify-content:center;color:white;font-weight:900">JD</div>
+                        <div>
+                            <div style="font-weight:900">John Doe</div>
+                            <div style="font-size:13px;color:var(--muted);font-weight:700">Pro Member • Berlin</div>
+                        </div>
+                    </div>
+                    <div style="font-weight:900;color:var(--orange-600)">85% profile</div>
+                </div>
+
+                <div style="margin-top:12px;display:flex;gap:8px">
+                    <a class="action-ghost" href="#edit">Edit Profile</a>
+                    <a class="action-ghost" href="#export">Export Data</a>
+                </div>
+            </div>
+
+        </aside>-->
+        <!--</div>--> <!-- end main-grid -->
+
+    </div>
+
+
+</div>

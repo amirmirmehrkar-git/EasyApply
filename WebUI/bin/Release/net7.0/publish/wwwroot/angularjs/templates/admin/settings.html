@@ -1,0 +1,127 @@
+﻿<div ng-controller="settingController as vm" ng-init="vm.initializeController()">
+    <div class="content-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">تنظیمات</h4>
+                        </div>
+                        <div class="card-body">
+                            <form name="form" ng-submit="vm.addOrUpdate()" novalidate>
+                                <div class="row g-3">
+
+                                    <div class="col-xl-3"
+                                         ng-class="{'has-error':form.$submitted && form.MinInstalmentAmount.$error.required}">
+                                        <label class="form-label">حداقل مبلغ اقساط</label>
+                                        <input ng-model="vm.item.MinInstalmentAmount" required name="MinInstalmentAmount"
+                                               type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-xl-3"
+                                         ng-class="{'has-error':form.$submitted && form.MaxInstalmentAmount.$error.required}">
+                                        <label class="form-label">حداکثر مبلغ اقساط</label>
+                                        <input ng-model="vm.item.MaxInstalmentAmount" required name="MaxInstalmentAmount"
+                                               type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-xl-3"
+                                         ng-class="{'has-error':form.$submitted && form.MinPrePayment.$error.required}">
+                                        <label class="form-label">درصد حداقل پیش پرداخت</label>
+                                        <input ng-model="vm.item.MinPrePayment" required name="MinPrePayment"
+                                               type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-xl-3"
+                                         ng-class="{'has-error':form.$submitted && form.MaxPrePayment.$error.required}">
+                                        <label class="form-label">درصد حداکثر پیش پرداخت</label>
+                                        <input ng-model="vm.item.MaxPrePayment" required name="MaxPrePayment"
+                                               type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-xl-3"
+                                         ng-class="{'has-error':form.$submitted && form.MinMonth.$error.required}">
+                                        <label class="form-label">حداقل تعداد اقساط</label>
+                                        <input ng-model="vm.item.MinMonth" required name="MinMonth"
+                                               type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-xl-3"
+                                         ng-class="{'has-error':form.$submitted && form.MaxMonth.$error.required}">
+                                        <label class="form-label">حداکثر تعداد اقساط</label>
+                                        <input ng-model="vm.item.MaxMonth" required name="MaxMonth"
+                                               type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-xl-3"
+                                         ng-class="{'has-error':form.$submitted && form.MonthlyProfit.$error.required}">
+                                        <label class="form-label">درصد سود ماهانه</label>
+                                        <input ng-model="vm.item.MonthlyProfit" required name="MonthlyProfit"
+                                               type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-xl-3"
+                                         ng-class="{'has-error':form.$submitted && form.LateFee.$error.required}">
+                                        <label class="form-label">درصد ضرر روزانه</label>
+                                        <input ng-model="vm.item.LateFee" required name="LateFee"
+                                               type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-xl-3"
+                                         ng-class="{'has-error':form.$submitted && form.MinPartnershipAmount.$error.required}">
+                                        <label class="form-label">حداقل مبلغ مضاربه</label>
+                                        <input ng-model="vm.item.MinPartnershipAmount" required name="MinPartnershipAmount"
+                                               type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-xl-3"
+                                         ng-class="{'has-error':form.$submitted && form.MaxPartnershipAmount.$error.required}">
+                                        <label class="form-label">حداکثر مبلغ مضاربه</label>
+                                        <input ng-model="vm.item.MaxPartnershipAmount" required name="MaxPartnershipAmount"
+                                               type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-xl-3"
+                                         ng-class="{'has-error':form.$submitted && form.MinPartnershipMonth.$error.required}">
+                                        <label class="form-label">حداقل تعداد سودهای مضاربه</label>
+                                        <input ng-model="vm.item.MinPartnershipMonth" required name="MinPartnershipMonth"
+                                               type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-xl-3"
+                                         ng-class="{'has-error':form.$submitted && form.MaxPartnershipMonth.$error.required}">
+                                        <label class="form-label">حداکثر تعداد سودهای مضاربه</label>
+                                        <input ng-model="vm.item.MaxPartnershipMonth" required name="MaxPartnershipMonth"
+                                               type="text" class="form-control" placeholder="">
+                                    </div>
+
+                                    <div class="text-left col-12">
+                                        <button type="submit" class="btn btn-success pl-5 pr-5 waves-effect">ذخیره</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div style="margin-top:150px" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">افزودن کاربر</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form name="formAddOrUpdateUser" ng-submit="vm.delete()" novalidate>
+                        <div class="row g-3" style="margin-bottom:20px">
+                            <h5 class="modal-title">آیا مایلید این مورد حذف شود؟</h5>
+                        </div>
+                        <button style="float:left!important;margin-top:20px;margin-right:5px" type="submit"
+                                class="text-left btn btn-danger pl-5 pr-5 waves-effect">
+                            حذف
+                        </button>
+                        <button style="float:left!important;margin-top:20px;margin-right:5px"
+                                data-dismiss="modal" aria-label="Close" type="button"
+                                class="text-left btn btn-outline-primary pl-5 pr-5 waves-effect">
+                            بستن
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

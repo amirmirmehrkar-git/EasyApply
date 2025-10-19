@@ -1,0 +1,292 @@
+﻿<div ng-controller="userController as vm" ng-init="vm.initializeController()">
+    <div class="content-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="card">
+
+                        <div ng-controller="roleController as vm" class="card-header">
+                            <h4 class="card-title">لیست نقش ها</h4>
+                            <button ng-click="vm.resetItem()" style="height:40px" type="button" class="btn btn-primary"
+                                    data-dismiss="modal" data-toggle="modal"
+                                    data-target="#addOrUpdatePermissionModal">
+                                افزودن
+                            </button>
+                        </div>
+                        <div ng-controller="roleController as vm" class="card-body">
+                            <div class="table-responsive">
+                                <table ng-table="vm.tableParams" show-filter="showFilter"
+                                       class="table table-striped responsive-table">
+                                    <tbody>
+                                        <tr style="text-align:center"
+                                            ng-repeat="row in $data track by row.Id">
+                                            <td data-title="'ردیف'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{$index + 1}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'عنوان'"
+                                                filter="{FullName: 'text'}" sortable="'FullName'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{row.Title}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'عملیات'">
+                                                <!--<span style="cursor:pointer;color:red">
+                                                    <i title="حذف" ng-click="vm.getRowWarranty(row)"
+                                                       data-dismiss="modal" data-toggle="modal" data-target="#deleteModal"
+                                                       class="icofont-ui-delete"></i>
+                                                </span>-->
+                                                <span style="cursor:pointer;color:cornflowerblue">
+                                                    <i title="ویرایش" ng-click="vm.getRow(row)"
+                                                       data-dismiss="modal" data-toggle="modal" data-target="#addOrUpdatePermissionModal"
+                                                       class="icofont-pencil"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="card-header">
+                            <h4 class="card-title">لیست ادمین ها</h4>
+                            <button style="height:40px" type="button" class="btn btn-primary"
+                                    data-dismiss="modal" data-toggle="modal"
+                                    data-target="#addAdminModal">
+                                افزودن
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table ng-table="vm.tableParams" show-filter="showFilter"
+                                       class="table table-striped responsive-table">
+                                    <tbody>
+                                        <tr style="text-align:center"
+                                            ng-repeat="row in $data track by row.Id">
+                                            <td data-title="'ردیف'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{$index + 1}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'نام کامل'"
+                                                filter="{FullName: 'text'}" sortable="'FullName'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{row.FullName}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'نقش'"
+                                                filter="{FullName: 'text'}" sortable="'FullName'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{row.PermissionTitle}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'شماره تماس'"
+                                                filter="{PhoneNumber: 'text'}" sortable="'PhoneNumber'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{row.PhoneNumber}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'تاریخ ثبت'"
+                                                filter="{CreateDate: 'ng-table/filters/datePicker.html'}" sortable="'PhoneNumber'">
+                                                <h6 class="table-responsive-title mb-0 fw-normal">
+                                                    <a>{{row.CreateDate | persianDate:'dddd, jD jMMMM jYY'}}</a>
+                                                </h6>
+                                            </td>
+                                            <td data-title="'عملیات'">
+                                                <span style="cursor:pointer;color:red">
+                                                    <i title="حذف" ng-click="vm.getRow(row)"
+                                                       data-dismiss="modal" data-toggle="modal" data-target="#deleteModal"
+                                                       class="icofont-ui-delete"></i>
+                                                </span>
+                                                <span style="cursor:pointer;color:cornflowerblue">
+                                                    <i title="ویرایش" ng-click="vm.getRow(row)"
+                                                       data-dismiss="modal" data-toggle="modal" data-target="#addAdminModal"
+                                                       class="icofont-pencil"></i>
+                                                </span>
+                                                <span style="cursor:pointer;color:forestgreen">
+                                                    <i title="ورود به داشبورد" ng-click="vm.loginWithToken(row)"
+                                                       class="icofont-arrow-right"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-controller="roleController as vm" class="modal fade" id="addOrUpdatePermissionModal" tabindex="-1">
+        <div style="margin-top:150px" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">افزودن نقش</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form name="form" ng-submit="vm.addOrUpdate()" novalidate>
+                        <div class="row g-3">
+                            <div class="col-12"
+                                 ng-class="{'has-error':form.$submitted && form.Title.$error.required}">
+                                <label class="form-label">عنوان</label>
+                                <input ng-model="$root.Title" required name="Title"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-12 row" style="margin-top:10px">
+                                <div class="col-3 form-check form-switch mb-3"
+                                     style="margin-right:10px;">
+                                    <label class="form-check-label" for="chkPermissions">دسترسی ها</label>
+                                    <input class="form-check-input" type="checkbox" id="chkPermissions">
+                                </div>
+                                <div class="col-3 form-check form-switch mb-3"
+                                     style="margin-right:10px;">
+                                    <label class="form-check-label" for="chkUsers">کاربران</label>
+                                    <input class="form-check-input" type="checkbox" id="chkUsers">
+                                </div>
+                                <div class="col-4 form-check form-switch mb-3"
+                                     style="margin-right:10px;">
+                                    <label class="form-check-label" for="chkRequests">درخواست تسویه</label>
+                                    <input class="form-check-input" type="checkbox" id="chkRequests">
+                                </div>
+                                <div class="col-3 form-check form-switch mb-3"
+                                     style="margin-right:10px;">
+                                    <label class="form-check-label" for="chkTransactions">تراکنش ها</label>
+                                    <input class="form-check-input" type="checkbox" id="chkTransactions">
+                                </div>
+                                <div class="col-3 form-check form-switch mb-3"
+                                     style="margin-right:10px;">
+                                    <label class="form-check-label" for="chkInstalments">اقساط</label>
+                                    <input class="form-check-input" type="checkbox" id="chkInstalments">
+                                </div>
+                                <div class="col-3 form-check form-switch mb-3"
+                                     style="margin-right:10px;">
+                                    <label class="form-check-label" for="chkPartnerships">مضاربه</label>
+                                    <input class="form-check-input" type="checkbox" id="chkPartnerships">
+                                </div>
+                                <div class="col-3 form-check form-switch mb-3"
+                                     style="margin-right:10px;">
+                                    <label class="form-check-label" for="chkProfits">تسویه سود</label>
+                                    <input class="form-check-input" type="checkbox" id="chkProfits">
+                                </div>
+                                <div class="col-3 form-check form-switch mb-3"
+                                     style="margin-right:10px;">
+                                    <label class="form-check-label" for="chkSetting">تنظیمات</label>
+                                    <input class="form-check-input" type="checkbox" id="chkSetting">
+                                </div>
+                                <div class="col-3 form-check form-switch mb-3"
+                                     style="margin-right:10px;">
+                                    <label class="form-check-label" for="chkTickets">پشتیبانی</label>
+                                    <input class="form-check-input" type="checkbox" id="chkTickets">
+                                </div>
+                                <div class="col-3 form-check form-switch mb-3"
+                                     style="margin-right:10px;">
+                                    <label class="form-check-label" for="chkDashboards">داشبورد</label>
+                                    <input class="form-check-input" type="checkbox" id="chkDashboards">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div>
+                            <button style="float:left!important;margin-top:20px;margin-right:5px" type="submit"
+                                    class="text-left btn btn-success pl-5 pr-5 waves-effect">
+                                ذخیره
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addAdminModal" tabindex="-1">
+        <div style="margin-top:150px" class="modal-dialog modal-lg">
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <h5 class="modal-title">افزودن ادمین</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form name="formAddAdminModal" ng-submit="vm.addOrUpdateAdmin()" novalidate>
+                        <div class="row g-3">
+                            <div class="col-xl-6"
+                                 ng-class="{'has-error':formAddAdminModal.$submitted && formAddAdminModal.FirstName.$error.required}">
+                                <label class="form-label">نام</label>
+                                <input ng-model="vm.item.FirstName" required name="FirstName"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-6"
+                                 ng-class="{'has-error':formAddAdminModal.$submitted && formAddAdminModal.LastName.$error.required}">
+                                <label class="form-label">نام خانوادگی</label>
+                                <input ng-model="vm.item.LastName" required name="LastName"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-6"
+                                 ng-class="{'has-error':formAddAdminModal.$submitted && formAddAdminModal.PhoneNumber.$error.required}">
+                                <label class="form-label">شماره تماس</label>
+                                <input ng-model="vm.item.PhoneNumber" required name="PhoneNumber"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-xl-6"
+                                 ng-class="{'has-error':formAddAdminModal.$submitted && formAddAdminModal.Password.$error.required}">
+                                <label class="form-label">رمز</label>
+                                <input ng-model="vm.item.Password" required name="Password"
+                                       type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col-12" ng-class="{'has-error':formAddAdminModal.$submitted && formAddAdminModal.PermissionId.$error.required}">
+                                <label class="form-label">نقش</label>
+                                <select name="PermissionId" class="form-control" ng-model="vm.PermissionId"
+                                        ng-init="vm.PermissionId || vm.permissions[0].id"
+                                        ng-options="option.id as option.title for option in vm.permissions"
+                                        required>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <button style="float:left!important;margin-top:20px;margin-right:5px" type="submit"
+                                    class="text-left btn btn-success pl-5 pr-5 waves-effect">
+                                ذخیره
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div style="margin-top:150px" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">افزودن کاربر</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form name="form" ng-submit="vm.delete()" novalidate>
+                        <div class="row g-3" style="margin-bottom:20px">
+                            <h5 class="modal-title">آیا مایلید این مورد حذف شود؟</h5>
+                        </div>
+                        <button style="float:left!important;margin-top:20px;margin-right:5px" type="submit"
+                                class="text-left btn btn-danger pl-5 pr-5 waves-effect">
+                            حذف
+                        </button>
+                        <button style="float:left!important;margin-top:20px;margin-right:5px"
+                                data-dismiss="modal" aria-label="Close" type="button"
+                                class="text-left btn btn-outline-primary pl-5 pr-5 waves-effect">
+                            بستن
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
